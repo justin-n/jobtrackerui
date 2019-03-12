@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   password = new FormControl('');
 
   navToUrl(url: string): void {
-    this.router.navigate([url]);
+    this.router.navigateByUrl(url);
   }
 
 }
