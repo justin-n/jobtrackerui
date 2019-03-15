@@ -1,0 +1,13 @@
+body {
+  background-color: #fafaff;
+}
+table {
+  border: 4px inset #cfcfcf;
+  border-collapse: collapse;
+  width: 400px;
+}
+td {
+  padding: 10px;
+  border: 2px inset #cfcfcf;
+  text-align: center;
+}
