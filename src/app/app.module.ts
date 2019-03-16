@@ -1,6 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { 
+  MatSelectModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatTableModule
+} from '@angular/material';
+import { CdkTableModule, CdkColumnDef } from '@angular/cdk/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,9 +27,17 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    CdkTableModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    CdkColumnDef
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
