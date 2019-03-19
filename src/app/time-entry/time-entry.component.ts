@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 export class TimeEntryComponent {
 
   constructor() { }
+
+  jobName: string;
+
+  onSubmit() {
+    console.log("Job Name:", this.jobName);
+  }
 }

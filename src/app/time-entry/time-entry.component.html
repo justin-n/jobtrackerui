@@ -1,6 +1,8 @@
 <table>
   <tr>
-    <td>job name</td>
+    <td>
+      <input [(ngModel)]="jobName" placeholder="Job Name" class="entryContainer" id="jobNameInput">
+    </td>
     <td [attr.rowspan]="2">time</td>
   </tr>
   <tr>
@@ -10,6 +12,8 @@
     <td [attr.colspan]="2">comment</td>
   </tr>
   <tr>
-    <td [attr.colspan]="2">submit</td>
+    <td [attr.colspan]="2">
+      <button (click)="onSubmit()">Submit</button>
+    </td>
   </tr>
 </table>

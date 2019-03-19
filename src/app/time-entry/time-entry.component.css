@@ -5,6 +5,7 @@ table {
   border: 4px inset #cfcfcf;
   border-collapse: collapse;
   width: 400px;
+  table-layout: fixed;
 }
 td {
   padding: 10px;
