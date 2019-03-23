@@ -3,7 +3,11 @@
     <td>
       <input [(ngModel)]="jobName" placeholder="Job Name" class="entryContainer" id="jobNameInput">
     </td>
-    <td [attr.rowspan]="2">time</td>
+    <td [attr.rowspan]="2">
+      <select [(ngModel)]="timeInHour">
+        <option *ngFor="let hourOption of hourOptions">{{hourOption.value}}</option>
+      </select>
+    </td>
   </tr>
   <tr>
     <td>date</td>
