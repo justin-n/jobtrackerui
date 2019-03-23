@@ -12,29 +12,35 @@ export class TimeEntryComponent {
 
   jobName: string;
   timeInHour: string = "01";
+  timeInMinute: string = "00";
 
-  hourOptions: Option[] = TimeEntryComponent.getHourOptions();
+  hourOptions: Option[] = TimeEntryComponent.getTwoLengthNumStrOptions(1, 12, 1);
+  minuteOptions: Option[] = TimeEntryComponent.getTwoLengthNumStrOptions(0, 59, 5);
 
   onSubmit() {
     console.log("Job Name:", this.jobName);
     console.log("timeInHour:", this.timeInHour);
+    console.log("timeInMinute:", this.timeInMinute);
   }
 
-  private static getHourOptions() : Option[] {
+  private static getTwoLengthNumStrOptions(
+      startingValue: number,
+      totalOptions: number,
+      incrementValue: number) : Option[] {
 
-    let hourOptions: Option[] = [];
+    let options: Option[] = [];
 
-    for (let hour = 1; hour <= 12; hour++) {
+    for (let optionIndex = startingValue; optionIndex <= totalOptions; optionIndex += incrementValue) {
 
-      let hourStringValue = String(hour);
+      let stringValue = String(optionIndex);
 
-      if (hourStringValue.length == 1) {
-        hourStringValue = ("0" + hourStringValue);
+      if (stringValue.length == 1) {
+        stringValue = ("0" + stringValue);
       }
 
-      hourOptions.push({key: hourStringValue, value: hourStringValue});
+      options.push({key: stringValue, value: stringValue});
     }
 
-    return hourOptions;
+    return options;
   }
 }

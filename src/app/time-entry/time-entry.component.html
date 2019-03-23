@@ -7,6 +7,10 @@
       <select [(ngModel)]="timeInHour">
         <option *ngFor="let hourOption of hourOptions">{{hourOption.value}}</option>
       </select>
+      <span>:</span>
+      <select [(ngModel)]="timeInMinute">
+        <option *ngFor="let minuteOption of minuteOptions">{{minuteOption.value}}</option>
+      </select>
     </td>
   </tr>
   <tr>
