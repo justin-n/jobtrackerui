@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Option } from './option';
+
+import { Option } from '../util/option';
+import { StringUtil } from '../util/string-util';
 
 @Component({
   selector: 'app-time-entry',
@@ -25,10 +27,10 @@ export class TimeEntryComponent {
 
   month: string = "01";
 
-  hourOptions: Option[] = TimeEntryComponent.getTwoLengthNumStrOptions(1, 12, 1);
-  minuteOptions: Option[] = TimeEntryComponent.getTwoLengthNumStrOptions(0, 59, 5);
+  hourOptions: Option[] = StringUtil.getTwoLengthNumStrOptions(1, 12, 1);
+  minuteOptions: Option[] = StringUtil.getTwoLengthNumStrOptions(0, 59, 5);
   periodOptions: Option[] = TimeEntryComponent.periodOptions;
-  monthOptions: Option[] = TimeEntryComponent.getTwoLengthNumStrOptions(1, 12, 1);
+  monthOptions: Option[] = StringUtil.getTwoLengthNumStrOptions(1, 12, 1);
 
   onSubmit() {
     console.log("Job Name:", this.jobName);
@@ -41,24 +43,4 @@ export class TimeEntryComponent {
     console.log("month:", this.month);
   }
 
-  private static getTwoLengthNumStrOptions(
-      startingValue: number,
-      totalOptions: number,
-      incrementValue: number) : Option[] {
-
-    let options: Option[] = [];
-
-    for (let optionIndex = startingValue; optionIndex <= totalOptions; optionIndex += incrementValue) {
-
-      let stringValue = String(optionIndex);
-
-      if (stringValue.length == 1) {
-        stringValue = ("0" + stringValue);
-      }
-
-      options.push({key: stringValue, value: stringValue});
-    }
-
-    return options;
-  }
 }
