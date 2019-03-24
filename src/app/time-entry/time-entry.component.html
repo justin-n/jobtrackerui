@@ -11,10 +11,30 @@
       <select [(ngModel)]="timeInMinute">
         <option *ngFor="let minuteOption of minuteOptions">{{minuteOption.value}}</option>
       </select>
+      <select [(ngModel)]="timeInPeriod">
+        <option *ngFor="let periodOption of periodOptions">{{periodOption.value}}</option>
+      </select>
+      <br />
+      <span>to</span>
+      <br />
+      <select [(ngModel)]="timeOutHour">
+        <option *ngFor="let hourOption of hourOptions">{{hourOption.value}}</option>
+      </select>
+      <span>:</span>
+      <select [(ngModel)]="timeOutMinute">
+        <option *ngFor="let minuteOption of minuteOptions">{{minuteOption.value}}</option>
+      </select>
+      <select [(ngModel)]="timeOutPeriod">
+        <option *ngFor="let periodOption of periodOptions">{{periodOption.value}}</option>
+      </select>
     </td>
   </tr>
   <tr>
-    <td>date</td>
+    <td>
+      <select [(ngModel)]="month">
+        <option *ngFor="let monthOption of monthOptions">{{monthOption.value}}</option>
+      </select>
+    </td>
   </tr>
   <tr>
     <td [attr.colspan]="2">comment</td>
