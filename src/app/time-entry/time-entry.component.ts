@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { Option } from '../util/option';
 import { StringUtil } from '../util/string-util';
+import { DateUtil } from '../util/date-util';
 
 @Component({
   selector: 'app-time-entry',
@@ -26,11 +27,17 @@ export class TimeEntryComponent {
   timeOutPeriod: string = "AM";
 
   month: string = "01";
+  day: string = "01";
+  year: string = "2019";
 
-  hourOptions: Option[] = StringUtil.getTwoLengthNumStrOptions(1, 12, 1);
-  minuteOptions: Option[] = StringUtil.getTwoLengthNumStrOptions(0, 59, 5);
+  hourOptions: Option[] = StringUtil.getTwoLengthNumberStringOptions(1, 12, 1);
+  minuteOptions: Option[] = StringUtil.getTwoLengthNumberStringOptions(0, 59, 5);
   periodOptions: Option[] = TimeEntryComponent.periodOptions;
-  monthOptions: Option[] = StringUtil.getTwoLengthNumStrOptions(1, 12, 1);
+  monthOptions: Option[] = StringUtil.getTwoLengthNumberStringOptions(1, 12, 1);
+  dayOptions: Option[] =
+      StringUtil.getTwoLengthNumberStringOptions(
+                      1, DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)), 1);
+  yearOptions: Option[] = StringUtil.getNumberStringOptions(2010, 2020, 1);
 
   onSubmit() {
     console.log("Job Name:", this.jobName);
@@ -41,6 +48,9 @@ export class TimeEntryComponent {
     console.log("timeOutMinute:", this.timeOutMinute);
     console.log("timeOutPeriod:", this.timeOutPeriod);
     console.log("month:", this.month);
+    console.log("daysInMonth:",
+                DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)));
+    console.log("day:", this.day);
+    console.log("year:", this.year);
   }
-
 }

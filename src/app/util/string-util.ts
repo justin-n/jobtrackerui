@@ -2,24 +2,41 @@ import { Option } from './option';
 
 export class StringUtil {
 
-  public static getTwoLengthNumStrOptions(
+  public static getTwoLengthNumberStringOptions(
       startingValue: number,
-      totalOptions: number,
+      endValue: number,
       incrementValue: number) : Option[] {
 
-      let options: Option[] = [];
+    let options: Option[] = [];
 
-      for (let optionIndex = startingValue; optionIndex <= totalOptions; optionIndex += incrementValue) {
+    for (let optionIndex = startingValue; optionIndex <= endValue; optionIndex += incrementValue) {
 
       let stringValue = String(optionIndex);
 
-      if (stringValue.length == 1) {
-          stringValue = ("0" + stringValue);
+      if (stringValue.length === 1) {
+        stringValue = ("0" + stringValue);
       }
 
       options.push({key: stringValue, value: stringValue});
-      }
+    }
 
-      return options;
+    return options;
+  }
+
+  public static getNumberStringOptions(
+      startingValue: number,
+      endValue: number,
+      incrementValue: number) : Option[] {
+
+    let options: Option[] = [];
+
+    for (let optionIndex = startingValue; optionIndex <= endValue; optionIndex += incrementValue) {
+
+      let stringValue = String(optionIndex);
+
+      options.push({key: stringValue, value: stringValue});
+    }
+
+    return options;
   }
 }

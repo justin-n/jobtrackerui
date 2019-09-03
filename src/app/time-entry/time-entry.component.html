@@ -34,6 +34,14 @@
       <select [(ngModel)]="month">
         <option *ngFor="let monthOption of monthOptions">{{monthOption.value}}</option>
       </select>
+      <span>/</span>
+      <select [(ngModel)]="day">
+        <option *ngFor="let dayOption of dayOptions">{{dayOption.value}}</option>
+      </select>
+      <span>/</span>
+      <select [(ngModel)]="year">
+        <option *ngFor="let yearOption of yearOptions">{{yearOption.value}}</option>
+      </select>
     </td>
   </tr>
   <tr>
