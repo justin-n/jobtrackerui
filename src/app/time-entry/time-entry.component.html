@@ -31,21 +31,23 @@
   </tr>
   <tr>
     <td>
-      <select [(ngModel)]="month">
+      <select [(ngModel)]="month" (change)="resolveNumberOfDaysInMonth()">
         <option *ngFor="let monthOption of monthOptions">{{monthOption.value}}</option>
       </select>
-      <span>/</span>
+      <span>&nbsp;/&nbsp;</span>
       <select [(ngModel)]="day">
         <option *ngFor="let dayOption of dayOptions">{{dayOption.value}}</option>
       </select>
-      <span>/</span>
-      <select [(ngModel)]="year">
+      <span>&nbsp;/&nbsp;</span>
+      <select [(ngModel)]="year" (change)="resolveNumberOfDaysInMonth()">
         <option *ngFor="let yearOption of yearOptions">{{yearOption.value}}</option>
       </select>
     </td>
   </tr>
   <tr>
-    <td [attr.colspan]="2">comment</td>
+    <td id="comment-cell" [attr.colspan]="2">
+      <textarea [(ngModel)]="comment" [attr.rows]="4" [attr.cols]="50"></textarea>
+    </td>
   </tr>
   <tr>
     <td [attr.colspan]="2">

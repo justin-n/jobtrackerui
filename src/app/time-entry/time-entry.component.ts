@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 
 import { Option } from '../util/option';
 import { StringUtil } from '../util/string-util';
@@ -12,6 +13,8 @@ import { DateUtil } from '../util/date-util';
 export class TimeEntryComponent {
 
   constructor() { }
+
+  // @Output() headerTitle = new EventEmitter<string>().emit('Time Entry');
 
   static readonly periodOptions: Option[] = [
     { key: "AM", value: "AM" },
@@ -39,6 +42,14 @@ export class TimeEntryComponent {
                       1, DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)), 1);
   yearOptions: Option[] = StringUtil.getNumberStringOptions(2010, 2020, 1);
 
+  comment: string;
+
+  private resolveNumberOfDaysInMonth() {
+    this.dayOptions =
+        StringUtil.getTwoLengthNumberStringOptions(
+            1, DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)), 1);
+  }
+
   onSubmit() {
     console.log("Job Name:", this.jobName);
     console.log("timeInHour:", this.timeInHour);
@@ -52,5 +63,6 @@ export class TimeEntryComponent {
                 DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)));
     console.log("day:", this.day);
     console.log("year:", this.year);
+    console.log("comment:", this.comment);
   }
 }
