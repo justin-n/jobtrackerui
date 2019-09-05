@@ -1,20 +1,26 @@
-import { Component } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Option } from '../util/option';
 import { StringUtil } from '../util/string-util';
 import { DateUtil } from '../util/date-util';
+import { HeaderTextService } from '../services/header-text.service';
 
 @Component({
   selector: 'app-time-entry',
   templateUrl: './time-entry.component.html',
   styleUrls: ['./time-entry.component.css']
 })
-export class TimeEntryComponent {
+export class TimeEntryComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private headerTextService: HeaderTextService
+  ) { }
 
-  // @Output() headerTitle = new EventEmitter<string>().emit('Time Entry');
+  ngOnInit() {
+    this.headerTextService.emitTitle('Time Entry');
+  }
+
+  public headerText: string;;
 
   static readonly periodOptions: Option[] = [
     { key: "AM", value: "AM" },

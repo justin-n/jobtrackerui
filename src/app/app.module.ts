@@ -8,6 +8,8 @@ import { TimeEntryComponent } from './time-entry/time-entry.component';
 import { TimeViewerComponent } from './time-viewer/time-viewer.component';
 import { LoginComponent } from './login/login.component';
 
+import { HeaderTextService } from './services/header-text.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +22,9 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    HeaderTextService
   ],
   bootstrap: [AppComponent]
 })

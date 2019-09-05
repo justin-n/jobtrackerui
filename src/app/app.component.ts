@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HeaderTextService } from './services/header-text.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  header = 'Job Tracker';
+  constructor(private headerTextService: HeaderTextService) {
+    headerTextService.headerEmitted$.subscribe(
+      headerText => { this.headerText = headerText; });
+  }
+
+  private headerText: string;
 }
