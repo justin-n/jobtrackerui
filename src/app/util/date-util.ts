@@ -23,7 +23,7 @@ export class DateUtil {
         }
     }
 
-    public static getNumberOfDaysInFebruary(yearNumber: number) : number {
+    private static getNumberOfDaysInFebruary(yearNumber: number) : number {
 
         if (DateUtil.isLeapYear(yearNumber)) {
 
@@ -35,7 +35,7 @@ export class DateUtil {
         }
     }
 
-    public static isLeapYear(yearNumber: number) : boolean {
+    private static isLeapYear(yearNumber: number) : boolean {
 
         if ((yearNumber % 4) === 0) {
 

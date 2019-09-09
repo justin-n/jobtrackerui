@@ -4,6 +4,7 @@ import { Option } from '../util/option';
 import { StringUtil } from '../util/string-util';
 import { DateUtil } from '../util/date-util';
 import { HeaderTextService } from '../services/header-text.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-time-entry',
@@ -13,6 +14,7 @@ import { HeaderTextService } from '../services/header-text.service';
 export class TimeEntryComponent implements OnInit {
 
   constructor(
+    private router: Router,
     private headerTextService: HeaderTextService
   ) { }
 

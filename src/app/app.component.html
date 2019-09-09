@@ -1,7 +1,16 @@
-<table id="header-container">
-  <tr>
-    <td><span>{{ headerText }}</span></td>
-  </tr>
-</table>
+<div id="header-container">
+  <table id="header-table">
+    <tr>
+      <td id="back-link-cell">
+        <span id="back-link-span" (click)='navToUrl("")'>&lt;&lt; Back</span>
+      </td>
+      <td>
+        <span>{{ headerText }}</span>
+      </td>
+    </tr>
+  </table>
+</div>
 <br />
-<router-outlet></router-outlet>
+<div id="main-router-outlet-container">
+  <router-outlet></router-outlet>
+</div>

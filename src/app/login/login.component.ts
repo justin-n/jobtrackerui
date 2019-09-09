@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HeaderTextService } from '../services/header-text.service';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+      private router: Router,
+      private headerTextService: HeaderTextService) { }
 
   ngOnInit() {
+    this.headerTextService.emitTitle('Login');
   }
 
   userName = new FormControl('');
@@ -20,5 +24,4 @@ export class LoginComponent implements OnInit {
   navToUrl(url: string): void {
     this.router.navigateByUrl(url);
   }
-
 }
