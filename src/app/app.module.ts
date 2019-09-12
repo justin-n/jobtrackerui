@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { TimeEntryComponent } from './time-entry/time-entry.component';
-import { TimeViewerComponent } from './time-viewer/time-viewer.component';
-import { LoginComponent } from './login/login.component';
+import { TimeEntryComponent } from './components/time-entry/time-entry.component';
+import { LoginComponent } from './components/login/login.component';
+import { TestLinksComponent } from './components/test-links/test-links.component';
 
 import { HeaderTextService } from './services/header-text.service';
 
@@ -14,8 +14,8 @@ import { HeaderTextService } from './services/header-text.service';
   declarations: [
     AppComponent,
     TimeEntryComponent,
-    TimeViewerComponent,
-    LoginComponent
+    LoginComponent,
+    TestLinksComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
+
 import { HeaderTextService } from './services/header-text.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,8 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
   constructor(
-      private router: Router,
-      private headerTextService: HeaderTextService) {
+    private location: Location,
+    headerTextService: HeaderTextService) {
 
     headerTextService.headerEmitted$.subscribe(
       headerText => { this.headerText = headerText; });
@@ -19,7 +20,7 @@ export class AppComponent {
 
   private headerText: string;
 
-  public navToUrl(url: string) {
-    this.router.navigateByUrl(url);
+  private goBack() {
+    this.location.back();
   }
 }

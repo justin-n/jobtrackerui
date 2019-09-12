@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { HeaderTextService } from '../services/header-text.service';
+
+import { HeaderTextService } from '../../services/header-text.service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +10,7 @@ import { HeaderTextService } from '../services/header-text.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(
-      private router: Router,
-      private headerTextService: HeaderTextService) { }
+  constructor(private headerTextService: HeaderTextService) { }
 
   ngOnInit() {
     this.headerTextService.emitTitle('Login');
@@ -20,8 +18,4 @@ export class LoginComponent implements OnInit {
 
   userName = new FormControl('');
   password = new FormControl('');
-
-  navToUrl(url: string): void {
-    this.router.navigateByUrl(url);
-  }
 }
