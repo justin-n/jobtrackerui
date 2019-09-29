@@ -24,3 +24,15 @@ body {
   right: 0;
   padding: 10px;
 }
+
+table.common {
+  border-collapse: collapse;
+  table-layout: fixed;
+  border: 4px inset #cfcfcf;
+}
+
+td.common {
+  padding: 10px;
+  border: 2px inset #cfcfcf;
+  text-align: center;
+}

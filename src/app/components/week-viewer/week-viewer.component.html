@@ -1,0 +1,7 @@
+<table id="week-table" class="common">
+  <tr *ngFor="let week of sampleWeeks" class="week-row">
+    <td>
+      <span>{{ week | date : weekFormatString }}</span>
+    </td>
+  </tr>
+</table>

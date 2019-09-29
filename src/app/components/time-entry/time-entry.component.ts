@@ -8,17 +8,20 @@ import { HeaderTextService } from '../../services/header-text.service';
 @Component({
   selector: 'app-time-entry',
   templateUrl: './time-entry.component.html',
-  styleUrls: ['./time-entry.component.css']
+  styleUrls: [
+    '../../app.component.css',
+    './time-entry.component.css'
+  ]
 })
 export class TimeEntryComponent implements OnInit {
+
+  public headerText: string;
 
   constructor(private headerTextService: HeaderTextService) { }
 
   ngOnInit() {
     this.headerTextService.emitTitle('Time Entry');
   }
-
-  public headerText: string;;
 
   static readonly periodOptions: Option[] = [
     { key: "AM", value: "AM" },

@@ -9,13 +9,18 @@ import { LoginComponent } from './components/login/login.component';
 import { TestLinksComponent } from './components/test-links/test-links.component';
 
 import { HeaderTextService } from './services/header-text.service';
+import { JobTimeService } from './services/job-time.service';
+import { WeekViewerComponent } from './components/week-viewer/week-viewer.component';
+import { JobTimeViewerComponent } from './components/job-time-viewer/job-time-viewer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimeEntryComponent,
+    WeekViewerComponent,
     LoginComponent,
-    TestLinksComponent
+    TestLinksComponent,
+    JobTimeViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,8 @@ import { HeaderTextService } from './services/header-text.service';
     ReactiveFormsModule
   ],
   providers: [
-    HeaderTextService
+    HeaderTextService,
+    JobTimeService
   ],
   bootstrap: [AppComponent]
 })

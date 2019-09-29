@@ -1,9 +1,9 @@
-<table>
+<table id="time-entry-table" class="common">
   <tr>
-    <td>
+    <td class="common">
       <input [(ngModel)]="jobName" placeholder="Job Name" class="entryContainer" id="jobNameInput">
     </td>
-    <td [attr.rowspan]="2">
+    <td [attr.rowspan]="2" class="common">
       <select [(ngModel)]="timeInHour">
         <option *ngFor="let hourOption of hourOptions">{{hourOption.value}}</option>
       </select>
@@ -30,7 +30,7 @@
     </td>
   </tr>
   <tr>
-    <td>
+    <td class="common">
       <select [(ngModel)]="month" (change)="resolveNumberOfDaysInMonth()">
         <option *ngFor="let monthOption of monthOptions">{{monthOption.value}}</option>
       </select>
@@ -45,12 +45,12 @@
     </td>
   </tr>
   <tr>
-    <td id="comment-cell" [attr.colspan]="2">
+    <td id="comment-cell" [attr.colspan]="2" class="common">
       <textarea id="comment-textarea" [(ngModel)]="comment" [attr.rows]="4" [attr.cols]="50"></textarea>
     </td>
   </tr>
   <tr>
-    <td [attr.colspan]="2">
+    <td [attr.colspan]="2" class="common">
       <button (click)="onSubmit()">Submit</button>
     </td>
   </tr>

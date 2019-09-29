@@ -1,0 +1,7 @@
+tr.week-row {
+  border-bottom: 2px inset #cfcfcf;
+}
+
+tr.week-row:last-child {
+  border-bottom: none;
+}

@@ -12,7 +12,7 @@ export class AppComponent {
 
   constructor(
     private location: Location,
-    headerTextService: HeaderTextService) {
+    private headerTextService: HeaderTextService) {
 
     headerTextService.headerEmitted$.subscribe(
       headerText => { this.headerText = headerText; });

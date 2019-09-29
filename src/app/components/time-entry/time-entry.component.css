@@ -1,17 +1,10 @@
 body {
   background-color: #fafaff;
 }
-table {
-  border: 4px inset #cfcfcf;
-  border-collapse: collapse;
+#time-entry-table {
   width: 400px;
-  table-layout: fixed;
 }
-td {
-  padding: 10px;
-  border: 2px inset #cfcfcf;
-  text-align: center;
-}
+
 #comment-textarea {
   resize: none;
   max-width: 100%;
