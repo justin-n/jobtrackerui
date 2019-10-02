@@ -3,6 +3,7 @@ export class JobTime {
     constructor(
             private id: number,
             private user: string,
+            private jobName: string,
             private timeIn: Date,
             private timeOut: Date,
             private comment: string) { }
@@ -13,6 +14,10 @@ export class JobTime {
 
     public getUser() : string {
         return this.user;
+    }
+
+    public getJobName() : string {
+        return this.jobName;
     }
 
     public getTimeIn() : Date {

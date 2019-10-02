@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { HeaderTextService } from '../../services/header-text.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +13,22 @@ import { HeaderTextService } from '../../services/header-text.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private headerTextService: HeaderTextService) { }
+  private credentials = {username: '', password: ''};
+
+  constructor(
+    private headerTextService: HeaderTextService,
+    private authenticationService: AuthenticationService,
+    private http: HttpClient,
+    private router: Router) { }
 
   ngOnInit() {
     this.headerTextService.emitTitle('Login');
   }
 
-  userName = new FormControl('');
-  password = new FormControl('');
+  login() {
+    this.authenticationService.authenticate(this.credentials, () => {
+      this.router.navigateByUrl('/');
+    });
+    return false;
+  }
 }

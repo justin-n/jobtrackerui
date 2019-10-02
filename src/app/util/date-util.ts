@@ -1,4 +1,44 @@
+import { JobTime } from '../entities/job-time';
+
 export class DateUtil {
+
+    public static dateIsWithinDayOf(day : Date, dateToTest: Date) {
+
+        return (day.getDay() === dateToTest.getDay()
+             && day.getMonth() === dateToTest.getMonth()
+             && day.getFullYear() === dateToTest.getFullYear());
+    }
+
+    public static getUniqueDatesFromJobTimes(jobTimes : JobTime[]) {
+
+        let timeIns = jobTimes.map(jt => jt.getTimeIn());
+
+        let dates = timeIns.map(ti => new Date(ti.getFullYear(), ti.getMonth(), ti.getDate()));
+
+        let uniqueDateNumbers : number[] = [];
+
+        dates.forEach(d => {
+            if (uniqueDateNumbers.indexOf(+d) === -1) {
+                uniqueDateNumbers.push(+d);
+            }
+        });
+
+        return uniqueDateNumbers.map(udn => new Date(udn));
+    }
+
+    public static jobTimeTimeInComparator(a: JobTime, b: JobTime) {
+
+        return DateUtil.dateComparator(a.getTimeIn(), b.getTimeIn());
+    }
+
+    public static dateComparator(a: Date, b: Date) {
+
+        if (a.getTime() < b.getTime()) return -1;
+
+        else if (a.getTime() > b.getTime()) return 1;
+
+        else return 0;
+    }
 
     public static getNumberOfDaysInMonth(monthNumber: number, yearNumber: number) : number {
 

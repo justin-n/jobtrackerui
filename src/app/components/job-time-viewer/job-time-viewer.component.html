@@ -1,1 +1,38 @@
-<p>job-time-viewer works!</p>
+<div id="days-container">
+  <div *ngFor="let uniqueDay of uniqueDays" class="day-container">
+    <table class="common day-table">
+      <tr class="date-data-row">
+        <td class="date-data-cell">
+          {{ uniqueDay | date: 'EEEE | MMMM d, yyyy' }}
+        </td>
+      </tr>
+      <tr class="job-times-row">
+        <td class="job-times-cell">
+          <div *ngFor="let jobTime of getJobTimesByDay(uniqueDay)">
+            <table class="job-time-table">
+              <tr class="job-time-row">
+                <td class="job-time-data" [attr.colspan]="1">
+                  {{ jobTime.getJobName() }}
+                </td>
+                <td class="job-time-data edit-link-container" [attr.colspan]="1">
+                  Edit
+                </td>
+              </tr>
+              <tr class="job-time-row">
+                <td class="job-time-data" [attr.colspan]="2">
+                  {{ jobTime.getTimeIn() | date: 'h:mm:ss aa'}} - {{ jobTime.getTimeOut() | date: 'h:mm:ss aa'}}
+                </td>
+              </tr>
+              <tr class="job-time-row">
+                <td class="job-time-data comment-cell" [attr.colspan]="2">
+                  {{ jobTime.getComment() }} &nbsp;
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <br />
+  </div>
+</div>

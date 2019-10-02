@@ -13,9 +13,7 @@ import { JobTimeService } from '../../services/job-time.service';
 })
 export class WeekViewerComponent implements OnInit {
 
-  private readonly weekFormatString : string = 'yyyy-MM-dd';
-
-  private sampleWeeks : Date[];
+  private weeks : Date[];
 
   constructor(private jobTimeService: JobTimeService,
               private headerTextService : HeaderTextService) { }
@@ -24,6 +22,6 @@ export class WeekViewerComponent implements OnInit {
 
     this.headerTextService.emitTitle('Week Viewer');
 
-    this.sampleWeeks = JSON.parse(this.jobTimeService.getSampleWeeks());
+    this.weeks = JSON.parse(this.jobTimeService.getSampleWeeks());
   }
 }

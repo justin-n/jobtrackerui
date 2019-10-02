@@ -12,6 +12,11 @@ import { HeaderTextService } from './services/header-text.service';
 import { JobTimeService } from './services/job-time.service';
 import { WeekViewerComponent } from './components/week-viewer/week-viewer.component';
 import { JobTimeViewerComponent } from './components/job-time-viewer/job-time-viewer.component';
+import { SimpleDateFormatPipe } from './pipes/simple-date-format.pip';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthTestComponent } from './components/auth-test/auth-test.component';
+import { XhrInterceptor } from './services/XhrInterceptor.service';
 
 @NgModule({
   declarations: [
@@ -20,17 +25,22 @@ import { JobTimeViewerComponent } from './components/job-time-viewer/job-time-vi
     WeekViewerComponent,
     LoginComponent,
     TestLinksComponent,
-    JobTimeViewerComponent
+    JobTimeViewerComponent,
+    AuthTestComponent,
+    SimpleDateFormatPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     HeaderTextService,
-    JobTimeService
+    JobTimeService,
+    AuthenticationService,
+    { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

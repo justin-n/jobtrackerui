@@ -1,7 +1,7 @@
 <table id="week-table" class="common">
-  <tr *ngFor="let week of sampleWeeks" class="week-row">
+  <tr *ngFor="let week of (weeks | simpleDateFormat)" class="week-row">
     <td>
-      <span>{{ week | date : weekFormatString }}</span>
+      <a routerLink="/jobtimeviewer/{{ week }}">Week of  {{ week }}</a>
     </td>
   </tr>
 </table>

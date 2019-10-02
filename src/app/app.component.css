@@ -9,12 +9,11 @@ body {
   right: 0;
   top: 0;
   padding: 0px;
-  font-size: 300%;
   color: #222222;
 }
 #back-link-cell {
   width: 85px;
-  font-size: 45%;
+  font-size: 125%;
   text-align: center;
 }
 #main-router-outlet-container {
@@ -24,7 +23,14 @@ body {
   right: 0;
   padding: 10px;
 }
-
+#main-header-cell {
+  font-size: 275%;
+}
+#logout-link-cell {
+  font-size: 125%;
+  width: 100px;
+  text-align: center;
+}
 table.common {
   border-collapse: collapse;
   table-layout: fixed;

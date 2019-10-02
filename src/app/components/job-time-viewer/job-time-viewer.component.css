@@ -1,0 +1,23 @@
+table.day-table {
+  width: 50%;
+}
+table.job-time-table {
+  margin-top: 10px;
+  border-collapse: collapse;
+  width: 100%;
+}
+td.job-times-cell {
+  padding: 5px;
+}
+td.date-data-cell {
+  font-size: 135%;
+}
+td.job-time-data {
+  border: 2px solid black;
+  font-size: 110%;
+  padding: 3px;
+}
+td.edit-link-container {
+  width: 45px;
+  text-align: center;
+}
