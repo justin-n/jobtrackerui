@@ -7,15 +7,10 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './auth-test.component.html',
   styleUrls: ['./auth-test.component.css']
 })
-export class AuthTestComponent implements OnInit {
+export class AuthTestComponent {
 
   constructor(
     private authenticationService: AuthenticationService,
     private http: HttpClient) { }
-
-  ngOnInit() {
-  }
-
-  private authenticated() { return this.authenticationService.authenticated; }
 
 }

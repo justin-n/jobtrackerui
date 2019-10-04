@@ -1,6 +1,4 @@
-<div [hidden]="!authenticated()">
-  you are authenticated
-</div>
-<div [hidden]="authenticated()">
-  you are not authenticated
-</div>
+<b>Principal Information:</b><br />
+<br />
+<b>Name:</b><br />
+<span>{{ authenticationService.getPrincipalInfo().getName() }}</span>

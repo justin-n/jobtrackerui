@@ -1,26 +1,31 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
+import { PrincipalInfo } from "../entities/principal-info/principal-info";
+
 @Injectable()
 export class AuthenticationService {
 
-    authenticated = false;
+    private principalInfo : PrincipalInfo;
 
     constructor(private http: HttpClient) { }
 
-    authenticate(credentials: any, callback: any) {
+    public getPrincipalInfo() : PrincipalInfo {
+        return this.principalInfo;
+    }
 
-        const headers = new HttpHeaders(credentials ? {
-            authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+    public authenticate(credentials: any, callback: any) {
+
+        console.log(credentials);
+
+        const httpHeaders = new HttpHeaders(credentials ? {
+            'Authorization' : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
         } : {});
 
-        this.http.post('user', {headers: headers}).subscribe(response => {
-            if (response['name']) {
-                this.authenticated = true;
-            }
-            else {
-                this.authenticated = false;
-            }
+        this.http.post('rest/principal', {}, {headers: httpHeaders}).subscribe(response => {
+
+            this.principalInfo = new PrincipalInfo(response);
+
             return callback && callback();
         })
     }

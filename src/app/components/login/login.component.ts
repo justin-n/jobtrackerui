@@ -27,6 +27,9 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authenticationService.authenticate(this.credentials, () => {
+
+      // principal information is available at this point
+
       this.router.navigateByUrl('/');
     });
     return false;
