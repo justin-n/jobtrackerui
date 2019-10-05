@@ -1,9 +1,9 @@
 table.day-table {
-  width: 50%;
+  width: 95vmin;
+  min-width: 40%;
 }
 table.job-time-table {
   margin-top: 10px;
-  border-collapse: collapse;
   width: 100%;
 }
 td.job-times-cell {

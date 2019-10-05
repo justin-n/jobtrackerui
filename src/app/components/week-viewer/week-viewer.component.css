@@ -1,7 +1,14 @@
-tr.week-row {
-  border-bottom: 2px inset #cfcfcf;
+#weeks-container {
+  display: inline-block;
+  text-align: center;
 }
-
-tr.week-row:last-child {
-  border-bottom: none;
+.week-container {
+  display: inline-block;
+  padding: 5px;
+}
+button.week-button {
+  width: 50vmax;
+  padding: 5px;
+  height: 5vmax;
+  font-size: 3vmax;
 }

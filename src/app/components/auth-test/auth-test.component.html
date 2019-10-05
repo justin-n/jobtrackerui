@@ -1,4 +1,16 @@
 <b>Principal Information:</b><br />
 <br />
 <b>Name:</b><br />
-<span>{{ authenticationService.getPrincipalInfo().getName() }}</span>
+<span>{{ authenticationService.getPrincipalInfo().getName() }}</span><br />
+<br />
+<b>Details:</b><br />
+<span>
+  Remote Address: {{ authenticationService.getPrincipalInfo().getDetails().getRemoteAddress() }}&nbsp;
+  Session Id: {{ authenticationService.getPrincipalInfo().getDetails().getSessionId() }}
+</span><br />
+<br />
+<b>Authorities:</b><br />
+<span *ngFor='let authority of authenticationService.getPrincipalInfo().getAuthorities()'>
+  {{ authority.getName() }}&nbsp;
+</span>
+<br />

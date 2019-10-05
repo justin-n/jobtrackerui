@@ -29,11 +29,13 @@ export class JobTimeViewerComponent implements OnInit {
 
   ngOnInit() : void {
 
-    this.jobTimeService.getAllJobTimes().subscribe((data : any) => {
+    this.jobTimeService.getSampleData().subscribe((data : any) => {
 
-      // JSON.parse(data).forEach((jsonObject : any) => {
+    // this.jobTimeService.getAllJobTimes().subscribe((data : any) => {
 
-      data.forEach((jsonObject : any) => {
+      JSON.parse(data).forEach((jsonObject : any) => {
+
+      // data.forEach((jsonObject : any) => {
 
         this.jobTimes.push(new JobTime(+jsonObject.id,
                                        jsonObject.user,

@@ -15,8 +15,8 @@ export class PrincipalInfo {
         for (let i = 0; i < principalInfo.authorities.length; i++) {
             this.authorities.push(new Authority(principalInfo.authorities[i]));
         }
-        this.details = principalInfo.details;
-        this.authenticated = principalInfo.authorities;
+        this.details = new Details(principalInfo.details);
+        this.authenticated = principalInfo.authenticated;
         this.principal = new Principal(principalInfo.principal);
         this.credentials = principalInfo.credentials;
         this.name = principalInfo.name;

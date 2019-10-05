@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #fafaff;
+  margin: 0;
+}
+.common-button {
+  background-color: #9999aa;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+}

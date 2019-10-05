@@ -17,6 +17,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthTestComponent } from './components/auth-test/auth-test.component';
 import { XhrInterceptor } from './services/XhrInterceptor.service';
+import { AdminConsoleComponent } from './components/admin/admin-console/admin-console.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { XhrInterceptor } from './services/XhrInterceptor.service';
     TestLinksComponent,
     JobTimeViewerComponent,
     AuthTestComponent,
-    SimpleDateFormatPipe
+    SimpleDateFormatPipe,
+    AdminConsoleComponent
   ],
   imports: [
     BrowserModule,

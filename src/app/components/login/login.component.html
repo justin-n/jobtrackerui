@@ -1,13 +1,27 @@
-Login:<br />
-<br />
-<form role="form" (submit)="login()">
-	<div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" name="username" [(ngModel)]="credentials.username"/>
-	</div>
-	<div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" name="password" [(ngModel)]="credentials.password"/>
-	</div>
-	<button type="submit">Submit</button>
-</form>
+<div id="credentials-form-container">
+	<form role="form" (submit)="login()">
+		<table id="inner-credentials-form-table">
+			<tr class="credentials-row">
+				<td class="credentials-cell">
+					<label for="username" class="credentials">Username:</label>
+				</td>
+				<td class="credentials-cell">
+					<input type="text" name="username" class="credentials" [(ngModel)]="credentials.username"/>
+				</td>
+			</tr>
+			<tr class="label-input-container">
+				<td class="credentials-cell">
+					<label for="password" class="credentials">Password:</label>
+				</td>
+				<td class="credentials-cell">
+					<input type="password" name="password" class="credentials" [(ngModel)]="credentials.password"/>
+				</td>
+			</tr>
+			<tr class="credentials-row">
+				<td [attr.rowspan]="2" class="credentials-cell">
+					<button type="submit" class="credentials common-button">Login</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>

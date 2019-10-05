@@ -5,6 +5,7 @@ import { HeaderTextService } from '../../services/header-text.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-login',
@@ -28,9 +29,18 @@ export class LoginComponent implements OnInit {
   login() {
     this.authenticationService.authenticate(this.credentials, () => {
 
-      // principal information is available at this point
+      if (this.authenticationService
+              .getPrincipalInfo()
+              .getAuthorities()
+              .map(auth => auth.getName())
+              .indexOf('ROLE_BOSS') > -1) {
 
-      this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/console');
+      }
+      else {
+        this.router.navigateByUrl('/timeentry');
+      }
+
     });
     return false;
   }

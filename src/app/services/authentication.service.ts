@@ -16,8 +16,6 @@ export class AuthenticationService {
 
     public authenticate(credentials: any, callback: any) {
 
-        console.log(credentials);
-
         const httpHeaders = new HttpHeaders(credentials ? {
             'Authorization' : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
         } : {});

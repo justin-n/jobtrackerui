@@ -7,6 +7,7 @@ import { TestLinksComponent } from './components/test-links/test-links.component
 import { WeekViewerComponent } from './components/week-viewer/week-viewer.component';
 import { JobTimeViewerComponent } from './components/job-time-viewer/job-time-viewer.component';
 import { AuthTestComponent } from './components/auth-test/auth-test.component';
+import { AdminConsoleComponent } from './components/admin/admin-console/admin-console.component';
 
 const routes: Routes = [
   { path: 'timeentry', component: TimeEntryComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'jobtimeviewer/:week', component: JobTimeViewerComponent },
   { path: 'authtest', component: AuthTestComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'console', component: AdminConsoleComponent },
   { path: '', component: TestLinksComponent }
 ];
 

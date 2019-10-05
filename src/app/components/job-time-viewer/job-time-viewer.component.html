@@ -1,6 +1,6 @@
 <div id="days-container">
   <div *ngFor="let uniqueDay of uniqueDays" class="day-container">
-    <table class="common day-table">
+    <table class="common-table common-outter-table day-table">
       <tr class="date-data-row">
         <td class="date-data-cell">
           {{ uniqueDay | date: 'EEEE | MMMM d, yyyy' }}
@@ -9,7 +9,7 @@
       <tr class="job-times-row">
         <td class="job-times-cell">
           <div *ngFor="let jobTime of getJobTimesByDay(uniqueDay)">
-            <table class="job-time-table">
+            <table class="job-time-table common-table">
               <tr class="job-time-row">
                 <td class="job-time-data" [attr.colspan]="1">
                   {{ jobTime.getJobName() }}

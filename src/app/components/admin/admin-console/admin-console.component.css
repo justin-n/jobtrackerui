@@ -1,0 +1,20 @@
+.center-table-container {
+  margin: auto;
+  text-align: center;
+}
+table.center-table {
+  width: 100%;
+  table-layout: fixed;
+}
+td.center-table {
+  width:100%;
+  padding: 10px 15px;
+}
+tr.center-table {
+  width: 100%;
+}
+button.center-table {
+  font-size: 200%;
+  width: 100%;
+  padding: 15px;
+}

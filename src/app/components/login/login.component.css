@@ -1,0 +1,25 @@
+#credentials-form-container {
+  padding: 5px;
+}
+#inner-credentials-form-table {
+  border-collapse: collapse;
+}
+tr.credentials-row {
+  padding: 5px;
+}
+td.credentials-cell {
+  padding: 5px 5px;
+  vertical-align: middle;
+}
+label.credentials {
+  font-size: 4vmin;
+}
+input.credentials {
+  height: 4vmin;
+  font-size: 4vmin;
+}
+button.credentials {
+  height: 6vmin;
+  width: 20vmin;
+  font-size: 4vmin;
+}
