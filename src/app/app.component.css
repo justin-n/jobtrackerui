@@ -8,11 +8,6 @@ table.common-table {
 table.common-outter-table {
   border: 4px inset #cfcfcf;
 }
-td.common {
-  padding: 10px;
-  border: 2px inset #cfcfcf;
-  text-align: center;
-}
 #main-router-outlet-container {
   margin-top: 0px;
   left: 0;

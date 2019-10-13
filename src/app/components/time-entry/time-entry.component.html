@@ -1,57 +1,61 @@
-<table id="time-entry-table" class="common-outter-table common-table">
-  <tr>
-    <td class="common">
-      <input [(ngModel)]="jobName" placeholder="Job Name" class="entryContainer" id="jobNameInput">
-    </td>
-    <td [attr.rowspan]="2" class="common">
-      <select [(ngModel)]="timeInHour">
-        <option *ngFor="let hourOption of hourOptions">{{hourOption.value}}</option>
-      </select>
-      <span>:</span>
-      <select [(ngModel)]="timeInMinute">
-        <option *ngFor="let minuteOption of minuteOptions">{{minuteOption.value}}</option>
-      </select>
-      <select [(ngModel)]="timeInPeriod">
-        <option *ngFor="let periodOption of periodOptions">{{periodOption.value}}</option>
-      </select>
-      <br />
-      <span>to</span>
-      <br />
-      <select [(ngModel)]="timeOutHour">
-        <option *ngFor="let hourOption of hourOptions">{{hourOption.value}}</option>
-      </select>
-      <span>:</span>
-      <select [(ngModel)]="timeOutMinute">
-        <option *ngFor="let minuteOption of minuteOptions">{{minuteOption.value}}</option>
-      </select>
-      <select [(ngModel)]="timeOutPeriod">
-        <option *ngFor="let periodOption of periodOptions">{{periodOption.value}}</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td class="common">
-      <select [(ngModel)]="month" (change)="resolveNumberOfDaysInMonth()">
-        <option *ngFor="let monthOption of monthOptions">{{monthOption.value}}</option>
-      </select>
-      <span>&nbsp;/&nbsp;</span>
-      <select [(ngModel)]="day">
-        <option *ngFor="let dayOption of dayOptions">{{dayOption.value}}</option>
-      </select>
-      <span>&nbsp;/&nbsp;</span>
-      <select [(ngModel)]="year" (change)="resolveNumberOfDaysInMonth()">
-        <option *ngFor="let yearOption of yearOptions">{{yearOption.value}}</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td id="comment-cell" [attr.colspan]="2" class="common">
-      <textarea id="comment-textarea" [(ngModel)]="comment" [attr.rows]="4" [attr.cols]="50"></textarea>
-    </td>
-  </tr>
-  <tr>
-    <td [attr.colspan]="2" class="common">
-      <button (click)="onSubmit()">Submit</button>
-    </td>
-  </tr>
-</table>
+<div id="time-entry-table-container">
+  <table id="time-entry-table" class="common-outter-table common-table">
+    <tr>
+      <td id="job-name-cell" class="time-entry">
+        <input [(ngModel)]="jobName" placeholder="Job Name" id="jobNameInput">
+      </td>
+    </tr>
+    <tr>
+      <td id="time-of-day-entry-cell" class="time-entry">
+        <select [(ngModel)]="timeInHour">
+          <option *ngFor="let hourOption of hourOptions">{{hourOption.value}}</option>
+        </select>
+        <span>&nbsp;:&nbsp;</span>
+        <select [(ngModel)]="timeInMinute">
+          <option *ngFor="let minuteOption of minuteOptions">{{minuteOption.value}}</option>
+        </select>
+        <span>&nbsp;</span>
+        <select [(ngModel)]="timeInPeriod">
+          <option *ngFor="let periodOption of periodOptions">{{periodOption.value}}</option>
+        </select>
+        <span id="time-to-span">to</span>
+        <select [(ngModel)]="timeOutHour">
+          <option *ngFor="let hourOption of hourOptions">{{hourOption.value}}</option>
+        </select>
+        <span>&nbsp;:&nbsp;</span>
+        <select [(ngModel)]="timeOutMinute">
+          <option *ngFor="let minuteOption of minuteOptions">{{minuteOption.value}}</option>
+        </select>
+        <span>&nbsp;</span>
+        <select [(ngModel)]="timeOutPeriod">
+          <option *ngFor="let periodOption of periodOptions">{{periodOption.value}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="time-entry">
+        <select [(ngModel)]="month" (change)="resolveNumberOfDaysInMonth()">
+          <option *ngFor="let monthOption of monthOptions">{{monthOption.value}}</option>
+        </select>
+        <span>&nbsp;/&nbsp;</span>
+        <select [(ngModel)]="day">
+          <option *ngFor="let dayOption of dayOptions">{{dayOption.value}}</option>
+        </select>
+        <span>&nbsp;/&nbsp;</span>
+        <select [(ngModel)]="year" (change)="resolveNumberOfDaysInMonth()">
+          <option *ngFor="let yearOption of yearOptions">{{yearOption.value}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td id="comment-cell" class="time-entry">
+        <textarea id="comment-textarea" [(ngModel)]="comment" [attr.rows]="4" [attr.cols]="20"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td id="submit-cell" class="time-entry">
+        <button id="submit-button" class="common-button" (click)="onSubmit()">Submit</button>
+      </td>
+    </tr>
+  </table>
+</div>
