@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SelectControlValueAccessor } from '@angular/forms';
 
 import { Option } from '../../util/option';
 import { StringUtil } from '../../util/string-util';
@@ -15,7 +16,7 @@ import { HeaderTextService } from '../../services/header-text.service';
 })
 export class TimeEntryComponent implements OnInit {
 
-  public headerText: string;
+  private currentTime: Date = DateUtil.getDateRoundedToNearest5MinutesOf(new Date());
 
   constructor(private headerTextService: HeaderTextService) { }
 
@@ -24,21 +25,22 @@ export class TimeEntryComponent implements OnInit {
   }
 
   static readonly periodOptions: Option[] = [
-    { key: "AM", value: "AM" },
-    { key: "PM", value: "PM" }
+    { key: 'AM', value: 'AM' },
+    { key: 'PM', value: 'PM' }
   ];
 
   jobName: string;
-  timeInHour: string = "01";
-  timeInMinute: string = "00";
-  timeInPeriod: string = "AM";
-  timeOutHour: string = "01";
-  timeOutMinute: string = "00";
-  timeOutPeriod: string = "AM";
+  timeInHour: string = '07';
+  timeInMinute: string = '30';
+  timeInPeriod: string = 'AM';
+  timeOutHour: string = StringUtil.getTwoLengthStringFromNumber(
+                            DateUtil.get2Length12HourHoursFrom24HourHours(this.currentTime.getHours()));
+  timeOutMinute: string = StringUtil.getTwoLengthStringFromNumber(this.currentTime.getMinutes());
+  timeOutPeriod: string = DateUtil.getPeriodStringFrom24HourHours(this.currentTime.getHours());
 
-  month: string = "01";
-  day: string = "01";
-  year: string = "2019";
+  month: string = StringUtil.getTwoLengthStringFromNumber(this.currentTime.getMonth() + 1);
+  day: string = StringUtil.getTwoLengthStringFromNumber(this.currentTime.getDate());
+  year: string = String(this.currentTime.getFullYear());
 
   hourOptions: Option[] = StringUtil.getTwoLengthNumberStringOptions(1, 12, 1);
   minuteOptions: Option[] = StringUtil.getTwoLengthNumberStringOptions(0, 59, 5);
@@ -57,19 +59,23 @@ export class TimeEntryComponent implements OnInit {
             1, DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)), 1);
   }
 
+  compareFn(c1: Option, c2: Option) : boolean {
+    return (c1 && c2 ? c1.value === c2.value : c1 === c2);
+  }
+
   onSubmit() {
-    console.log("Job Name:", this.jobName);
-    console.log("timeInHour:", this.timeInHour);
-    console.log("timeInMinute:", this.timeInMinute);
-    console.log("timeInPeriod:", this.timeInPeriod);
-    console.log("timeOutHour:", this.timeOutHour);
-    console.log("timeOutMinute:", this.timeOutMinute);
-    console.log("timeOutPeriod:", this.timeOutPeriod);
-    console.log("month:", this.month);
-    console.log("daysInMonth:",
+    console.log('Job Name:', this.jobName);
+    console.log('timeInHour:', this.timeInHour);
+    console.log('timeInMinute:', this.timeInMinute);
+    console.log('timeInPeriod:', this.timeInPeriod);
+    console.log('timeOutHour:', this.timeOutHour);
+    console.log('timeOutMinute:', this.timeOutMinute);
+    console.log('timeOutPeriod:', this.timeOutPeriod);
+    console.log('month:', this.month);
+    console.log('daysInMonth:',
                 DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)));
-    console.log("day:", this.day);
-    console.log("year:", this.year);
-    console.log("comment:", this.comment);
+    console.log('day:', this.day);
+    console.log('year:', this.year);
+    console.log('comment:', this.comment);
   }
 }

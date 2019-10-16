@@ -11,11 +11,7 @@ export class StringUtil {
 
     for (let optionIndex = startingValue; optionIndex <= endValue; optionIndex += incrementValue) {
 
-      let stringValue = String(optionIndex);
-
-      if (stringValue.length === 1) {
-        stringValue = ("0" + stringValue);
-      }
+      let stringValue = StringUtil.getTwoLengthStringFromNumber(optionIndex);
 
       options.push({key: stringValue, value: stringValue});
     }
@@ -38,5 +34,16 @@ export class StringUtil {
     }
 
     return options;
+  }
+
+  public static getTwoLengthStringFromNumber(number: number) : string {
+
+    let stringValue = String(number);
+
+    if (stringValue.length === 1) {
+      stringValue = ('0' + stringValue);
+    }
+
+    return stringValue
   }
 }
