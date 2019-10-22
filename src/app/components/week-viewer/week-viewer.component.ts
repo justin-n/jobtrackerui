@@ -13,7 +13,9 @@ import { JobTimeService } from '../../services/job-time.service';
 })
 export class WeekViewerComponent implements OnInit {
 
-  private weeks : Date[];
+  private weeks : Date[] = [];
+
+  private weeksLoaded : boolean = false;
 
   constructor(private jobTimeService: JobTimeService,
               private headerTextService : HeaderTextService) { }
@@ -22,6 +24,15 @@ export class WeekViewerComponent implements OnInit {
 
     this.headerTextService.emitTitle('Week Viewer');
 
-    this.weeks = JSON.parse(this.jobTimeService.getSampleWeeks());
+    // this.weeks = JSON.parse(this.jobTimeService.getSampleWeeks());
+
+    this.jobTimeService.getAllWeeks().subscribe((data : any) => {
+
+        data.forEach((dateNumber : number) => {
+          this.weeks.push(new Date(dateNumber));
+        });
+
+        this.weeksLoaded = true;
+    });
   }
 }

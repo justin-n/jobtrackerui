@@ -23,19 +23,23 @@ export class JobTimeViewerComponent implements OnInit {
 
   private uniqueDays : Date[];
 
+  private jobTimesLoaded : boolean = false;
+
   constructor(private route: ActivatedRoute,
               private jobTimeService: JobTimeService,
               private headerTextService: HeaderTextService) { }
 
   ngOnInit() : void {
 
-    this.jobTimeService.getSampleData().subscribe((data : any) => {
+    this.currentWeek = this.route.snapshot.paramMap.get('week');
 
-    // this.jobTimeService.getAllJobTimes().subscribe((data : any) => {
+    // this.jobTimeService.getSampleData().subscribe((data : any) => {
 
-      JSON.parse(data).forEach((jsonObject : any) => {
+    this.jobTimeService.getJobTimesByWeek(this.currentWeek).subscribe((data : any) => {
 
-      // data.forEach((jsonObject : any) => {
+      // JSON.parse(data).forEach((jsonObject : any) => {
+
+      data.forEach((jsonObject : any) => {
 
         this.jobTimes.push(new JobTime(+jsonObject.id,
                                        jsonObject.user,
@@ -48,9 +52,11 @@ export class JobTimeViewerComponent implements OnInit {
       this.jobTimes.sort(DateUtil.jobTimeTimeInComparator);
 
       this.uniqueDays = DateUtil.getUniqueDatesFromJobTimes(this.jobTimes);
+
+      this.jobTimesLoaded = true;
     });
 
-    this.currentWeek = this.route.snapshot.paramMap.get('week');
+
 
     this.headerTextService.emitTitle('Week of ' + this.currentWeek);
   }

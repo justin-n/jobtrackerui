@@ -77,5 +77,7 @@ export class TimeEntryComponent implements OnInit {
     console.log('day:', this.day);
     console.log('year:', this.year);
     console.log('comment:', this.comment);
+
+    // let jobTime = JobTime()
   }
 }

@@ -1,4 +1,4 @@
-<div id="days-container">
+<div *ngIf="jobTimesLoaded" id="days-container">
   <div *ngFor="let uniqueDay of uniqueDays" class="day-container">
     <table class="common-table common-outter-table day-table">
       <tr class="date-data-row">

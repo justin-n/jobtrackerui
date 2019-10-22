@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+
+import { JobTime } from '../entities/job-time';
 
 @Injectable()
 export class JobTimeService {
@@ -32,5 +33,17 @@ export class JobTimeService {
 
     getAllJobTimes() : Observable<any> {
         return this.http.get(this.baseUrl + '/rest/jobtimes');
+    }
+
+    getJobTimesByWeek(week : string) : Observable<any> {
+        return this.http.get(this.baseUrl + '/rest/weeks/' + week);
+    }
+
+    getAllWeeks() : Observable<any> {
+        return this.http.get(this.baseUrl + '/rest/weeks');
+    }
+
+    addJobTime(jobTime: JobTime) : void {
+        
     }
 }
