@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectControlValueAccessor } from '@angular/forms';
 
-import { Option } from '../../util/option';
 import { StringUtil } from '../../util/string-util';
 import { DateUtil } from '../../util/date-util';
 import { HeaderTextService } from '../../services/header-text.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { TimeEntryService } from 'src/app/services/time-entry.service';
+import { Option } from '../../util/option';
+import { JobTime } from '../../entities/job-time';
 
 @Component({
   selector: 'app-time-entry',
@@ -18,7 +20,10 @@ export class TimeEntryComponent implements OnInit {
 
   private currentTime: Date = DateUtil.getDateRoundedToNearest5MinutesOf(new Date());
 
-  constructor(private headerTextService: HeaderTextService) { }
+  constructor(
+      private headerTextService: HeaderTextService,
+      private authenticationService: AuthenticationService,
+      private timeEntryService: TimeEntryService) { }
 
   ngOnInit() {
     this.headerTextService.emitTitle('Time Entry');
@@ -78,6 +83,35 @@ export class TimeEntryComponent implements OnInit {
     console.log('year:', this.year);
     console.log('comment:', this.comment);
 
-    // let jobTime = JobTime()
+    let jobTime = new JobTime(
+        null,
+        // TODO this requires getPrincipalInfo() to return an object (as in not be null)
+        this.authenticationService.getPrincipalInfo().getName(),
+        this.jobName,
+        new Date(
+            +this.year,
+            (+this.month - 1),
+            +this.day,
+            DateUtil.get24HourHoursFrom(+this.timeInHour, this.timeInPeriod),
+            +this.timeInMinute),
+        new Date(
+            +this.year,
+            (+this.month - 1),
+            +this.day,
+            DateUtil.get24HourHoursFrom(+this.timeOutHour, this.timeOutPeriod),
+            +this.timeOutMinute),
+        this.comment);
+
+      console.log(jobTime);
+
+      this.timeEntryService.addJobTime(jobTime).subscribe(
+        result => {
+          console.log(result);
+        },
+        error => {
+          console.log(error.message);
+        },
+        () => { console.log('onSubmit() request finished')}
+      );
   }
 }

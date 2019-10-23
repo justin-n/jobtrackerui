@@ -56,8 +56,6 @@ export class JobTimeViewerComponent implements OnInit {
       this.jobTimesLoaded = true;
     });
 
-
-
     this.headerTextService.emitTitle('Week of ' + this.currentWeek);
   }
 

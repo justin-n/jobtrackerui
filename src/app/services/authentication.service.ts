@@ -6,25 +6,30 @@ import { PrincipalInfo } from "../entities/principal-info/principal-info";
 @Injectable()
 export class AuthenticationService {
 
-    private principalInfo : PrincipalInfo;
+  private principalInfo : PrincipalInfo;
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    public getPrincipalInfo() : PrincipalInfo {
-        return this.principalInfo;
-    }
+  public getPrincipalInfo() : PrincipalInfo {
+    return this.principalInfo;
+  }
 
-    public authenticate(credentials: any, callback: any) {
+  public authenticate(credentials: any, callback: any) {
 
-        const httpHeaders = new HttpHeaders(credentials ? {
-            'Authorization' : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
-        } : {});
+    const httpHeaders = new HttpHeaders(
+      credentials
+        ? { 'Authorization' : 'Basic ' + btoa(credentials.username + ':' + credentials.password) }
+        : {}
+    );
 
-        this.http.post('rest/principal', {}, {headers: httpHeaders}).subscribe(response => {
+    this.http.post('rest/principal', {}, { headers: httpHeaders }).subscribe(
 
-            this.principalInfo = new PrincipalInfo(response);
-
-            return callback && callback();
-        })
-    }
+    response => {
+      this.principalInfo = new PrincipalInfo(response);;
+    },
+    error => {
+      console.log(error.message)
+    },
+    () => callback() );
+  }
 }

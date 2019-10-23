@@ -96,6 +96,24 @@ export class DateUtil {
     }
   }
 
+  public static get24HourHoursFrom(twelveHourHours: number, period: string) : number {
+
+    if (period === 'AM') {
+      if (twelveHourHours === 12) {
+        return 0;
+      }
+      else if (twelveHourHours === 1) {
+        return 1;
+      }
+      else {
+        return twelveHourHours;
+      }
+    }
+    else {
+      return (twelveHourHours + 12);
+    }
+  }
+
   private static getNumberOfDaysInFebruary(yearNumber: number) : number {
 
     if (DateUtil.isLeapYear(yearNumber)) {

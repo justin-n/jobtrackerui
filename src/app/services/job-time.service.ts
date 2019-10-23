@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
+import { AppConfigService } from '../app-config.service';
 import { JobTime } from '../entities/job-time';
 
 @Injectable()
 export class JobTimeService {
 
-    private baseUrl : string = '/jobtracker';
+    private baseUrl : string;
 
     private sampleJobTimes =
         `[
@@ -21,7 +22,9 @@ export class JobTimeService {
 
     private sampleWeeks = `[1568001600000,1483938000000]`;
 
-    constructor(private http: HttpClient) { }
+    constructor(private appConfigService: AppConfigService, private http: HttpClient) {
+        this.baseUrl = appConfigService.getBaseUrl();
+    }
 
     getSampleData() : Observable<string> {
         return of(this.sampleJobTimes);
@@ -41,9 +44,5 @@ export class JobTimeService {
 
     getAllWeeks() : Observable<any> {
         return this.http.get(this.baseUrl + '/rest/weeks');
-    }
-
-    addJobTime(jobTime: JobTime) : void {
-        
     }
 }
