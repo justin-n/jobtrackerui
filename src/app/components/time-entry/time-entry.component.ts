@@ -69,6 +69,58 @@ export class TimeEntryComponent implements OnInit {
   }
 
   onSubmit() {
+    this.printFormValues();
+
+    let jobTime = this.getJobTimeFromFormValues();
+
+    console.log(jobTime);
+
+    this.timeEntryService.addJobTime(jobTime).subscribe(
+      result => {
+        console.log(result);
+      },
+      error => {
+        console.log(error.message);
+      },
+      () => { console.log('onSubmit() request finished')}
+    );
+  }
+
+  private getJobTimeFromFormValues() : JobTime {
+
+    let timeInDate = this.getTimeInDateFromFormValues();
+
+    let timeOutDate = this.getTimeOutDateFromFormValues();
+
+    return new JobTime(
+      null,
+      // TODO this requires getPrincipalInfo() to return an object (as in not be null)
+      this.authenticationService.getPrincipalInfo().getName(),
+      this.jobName,
+      timeInDate,
+      timeOutDate,
+      this.comment);
+  }
+
+  private getTimeInDateFromFormValues() : Date {
+    return new Date(
+      +this.year,
+      (+this.month - 1),
+      +this.day,
+      DateUtil.get24HourHoursFrom(+this.timeInHour, this.timeInPeriod),
+      +this.timeInMinute);
+  }
+
+  private getTimeOutDateFromFormValues() : Date {
+    return new Date(
+      +this.year,
+      (+this.month - 1),
+      +this.day,
+      DateUtil.get24HourHoursFrom(+this.timeOutHour, this.timeOutPeriod),
+      +this.timeOutMinute);
+  }
+
+  private printFormValues() : void {
     console.log('Job Name:', this.jobName);
     console.log('timeInHour:', this.timeInHour);
     console.log('timeInMinute:', this.timeInMinute);
@@ -82,36 +134,5 @@ export class TimeEntryComponent implements OnInit {
     console.log('day:', this.day);
     console.log('year:', this.year);
     console.log('comment:', this.comment);
-
-    let jobTime = new JobTime(
-        null,
-        // TODO this requires getPrincipalInfo() to return an object (as in not be null)
-        this.authenticationService.getPrincipalInfo().getName(),
-        this.jobName,
-        new Date(
-            +this.year,
-            (+this.month - 1),
-            +this.day,
-            DateUtil.get24HourHoursFrom(+this.timeInHour, this.timeInPeriod),
-            +this.timeInMinute),
-        new Date(
-            +this.year,
-            (+this.month - 1),
-            +this.day,
-            DateUtil.get24HourHoursFrom(+this.timeOutHour, this.timeOutPeriod),
-            +this.timeOutMinute),
-        this.comment);
-
-      console.log(jobTime);
-
-      this.timeEntryService.addJobTime(jobTime).subscribe(
-        result => {
-          console.log(result);
-        },
-        error => {
-          console.log(error.message);
-        },
-        () => { console.log('onSubmit() request finished')}
-      );
   }
 }

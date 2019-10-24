@@ -1,5 +1,6 @@
 <div *ngIf="weeksLoaded" id="weeks-container">
   <div *ngFor="let week of (weeks | simpleDateFormat)" class="week-container">
+    <!-- The width of this button is inconsistent in some browsers (trails off the right side) -->
     <button routerLink="/jobtimeviewer/{{ week }}" class="week-button common-button">Week of  {{ week }}</button>
   </div>
 </div>
