@@ -22,6 +22,8 @@ import { TimeEntryService } from './services/time-entry.service';
 import { XhrInterceptorService } from './services/xhr-interceptor.service';
 
 import { SimpleDateFormatPipe } from './pipes/simple-date-format.pip';
+import { ErrorPopupComponent } from './components/popups/error-popup/error-popup.component';
+import { ConfirmationPopupComponent } from './components/popups/confirmation-popup/confirmation-popup.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { SimpleDateFormatPipe } from './pipes/simple-date-format.pip';
     JobTimeViewerComponent,
     AuthTestComponent,
     SimpleDateFormatPipe,
-    AdminConsoleComponent
+    AdminConsoleComponent,
+    ErrorPopupComponent,
+    ConfirmationPopupComponent
   ],
   imports: [
     BrowserModule,

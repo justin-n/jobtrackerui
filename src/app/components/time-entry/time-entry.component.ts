@@ -71,19 +71,19 @@ export class TimeEntryComponent implements OnInit {
   onSubmit() {
     this.printFormValues();
 
-    let jobTime = this.getJobTimeFromFormValues();
+    // let jobTime = this.getJobTimeFromFormValues();
 
-    console.log(jobTime);
+    // console.log(jobTime);
 
-    this.timeEntryService.addJobTime(jobTime).subscribe(
-      result => {
-        console.log(result);
-      },
-      error => {
-        console.log(error.message);
-      },
-      () => { console.log('onSubmit() request finished')}
-    );
+    // this.timeEntryService.addJobTime(jobTime).subscribe(
+    //   result => {
+    //     console.log(result);
+    //   },
+    //   error => {
+    //     console.log(error.message);
+    //   },
+    //   () => { console.log('onSubmit() request finished')}
+    // );
   }
 
   private getJobTimeFromFormValues() : JobTime {

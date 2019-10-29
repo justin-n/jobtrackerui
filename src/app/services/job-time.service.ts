@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { AppConfigService } from '../app-config.service';
-import { JobTime } from '../entities/job-time';
 
 @Injectable()
 export class JobTimeService {
