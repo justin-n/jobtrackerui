@@ -1,0 +1,24 @@
+div.common-popup-outer-container {
+  z-index: 1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+}
+div.common-popup-inner-container {
+  width: 60vmax;
+  height: 80vmin;
+  background-color: #9999aa;
+  display: inline-block;
+  margin-top: 40px;
+  border-radius: 25px;
+}
+table.common-popup {
+  margin: 5vmin 10vmin;
+  table-layout: fixed;
+  width: 50vmax;
+  height: 70vmin;
+  background-color: #ff0000;
+}
