@@ -8,17 +8,27 @@ div.common-popup-outer-container {
   left: 0;
 }
 div.common-popup-inner-container {
-  width: 60vmax;
-  height: 80vmin;
-  background-color: #9999aa;
+  width: 90vw;
+  height: 90vh;
+  background-color: #eeeeff;
   display: inline-block;
-  margin-top: 40px;
+  margin-top: 5vh;
   border-radius: 25px;
 }
 table.common-popup {
-  margin: 5vmin 10vmin;
+  margin: 5vh 5vw;
   table-layout: fixed;
-  width: 50vmax;
-  height: 70vmin;
-  background-color: #ff0000;
+  width: 80vw;
+  height: 80vh;
+  background-color: #eeeeff;
+}
+tr.message-row {
+  height: 75%;
+  background-color: #eeeeff;
+  font-size: 5vmin;
+}
+#ok-button {
+  width: 45vw;
+  height: 60%;
+  font-size: 4vmin;
 }

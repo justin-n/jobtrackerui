@@ -1,8 +1,13 @@
 <div class="common-popup-outer-container">
   <div class="common-popup-inner-container">
     <table class="common-popup">
+      <tr class="message-row">
+        <td>{{ message }}</td>
+      </tr>
       <tr>
-        <td>content</td>
+        <td>
+          <button id="ok-button" class="common-button" (click)="dismissError()">OK</button>
+        </td>
       </tr>
     </table>
   </div>

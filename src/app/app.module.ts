@@ -21,7 +21,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { TimeEntryService } from './services/time-entry.service';
 import { XhrInterceptorService } from './services/xhr-interceptor.service';
 
-import { SimpleDateFormatPipe } from './pipes/simple-date-format.pip';
+import { SimpleDateFormatPipe } from './pipes/simple-date-format.pipe';
 import { ErrorPopupComponent } from './components/popups/error-popup/error-popup.component';
 import { ConfirmationPopupComponent } from './components/popups/confirmation-popup/confirmation-popup.component';
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-error-popup',
@@ -8,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
     '../../../styles/popup.css'
   ]
 })
-export class ErrorPopupComponent implements OnInit {
+export class ErrorPopupComponent {
+
+  @Input() message: string;
+
+  @Output() errorDismissed = new EventEmitter<boolean>();
 
   constructor() { }
 
-  ngOnInit() {
+  dismissError() {
+    this.errorDismissed.emit(true);
   }
-
 }

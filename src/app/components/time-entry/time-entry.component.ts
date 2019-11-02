@@ -18,72 +18,111 @@ import { JobTime } from '../../entities/job-time';
 })
 export class TimeEntryComponent implements OnInit {
 
-  private currentTime: Date = DateUtil.getDateRoundedToNearest5MinutesOf(new Date());
-
-  constructor(
-      private headerTextService: HeaderTextService,
-      private authenticationService: AuthenticationService,
-      private timeEntryService: TimeEntryService) { }
-
-  ngOnInit() {
-    this.headerTextService.emitTitle('Time Entry');
-  }
-
   static readonly periodOptions: Option[] = [
     { key: 'AM', value: 'AM' },
     { key: 'PM', value: 'PM' }
   ];
 
-  jobName: string;
-  timeInHour: string = '07';
-  timeInMinute: string = '30';
-  timeInPeriod: string = 'AM';
-  timeOutHour: string = StringUtil.getTwoLengthStringFromNumber(
-                            DateUtil.get2Length12HourHoursFrom24HourHours(this.currentTime.getHours()));
-  timeOutMinute: string = StringUtil.getTwoLengthStringFromNumber(this.currentTime.getMinutes());
-  timeOutPeriod: string = DateUtil.getPeriodStringFrom24HourHours(this.currentTime.getHours());
+  private currentTime: Date = DateUtil.getDateRoundedToNearest5MinutesOf(new Date());
 
-  month: string = StringUtil.getTwoLengthStringFromNumber(this.currentTime.getMonth() + 1);
-  day: string = StringUtil.getTwoLengthStringFromNumber(this.currentTime.getDate());
-  year: string = String(this.currentTime.getFullYear());
+  private errorDismissed : boolean = true;
 
-  hourOptions: Option[] = StringUtil.getTwoLengthNumberStringOptions(1, 12, 1);
-  minuteOptions: Option[] = StringUtil.getTwoLengthNumberStringOptions(0, 59, 5);
-  periodOptions: Option[] = TimeEntryComponent.periodOptions;
-  monthOptions: Option[] = StringUtil.getTwoLengthNumberStringOptions(1, 12, 1);
-  dayOptions: Option[] =
-      StringUtil.getTwoLengthNumberStringOptions(
-                      1, DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)), 1);
-  yearOptions: Option[] = StringUtil.getNumberStringOptions(2010, 2020, 1);
+  private errorMessage : string;
 
-  comment: string;
+  private jobName: string;
+  private timeInHour: string;
+  private timeInMinute: string;
+  private timeInPeriod: string;
+  private timeOutHour: string;
+  private timeOutMinute: string;
+  private timeOutPeriod: string;
 
-  private resolveNumberOfDaysInMonth() {
-    this.dayOptions =
-        StringUtil.getTwoLengthNumberStringOptions(
-            1, DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)), 1);
+  private month: string;
+  private day: string;
+  private year: string;
+
+  private hourOptions: Option[];
+  private minuteOptions: Option[];
+  private periodOptions: Option[];
+  private monthOptions: Option[];
+  private dayOptions: Option[];
+  private yearOptions: Option[];
+
+  private comment: string;
+
+  constructor(
+    private headerTextService: HeaderTextService,
+    private authenticationService: AuthenticationService,
+    private timeEntryService: TimeEntryService) { }
+
+  ngOnInit() : void {
+    this.headerTextService.emitTitle('Time Entry');
+
+    this.initializeForm();
   }
 
   compareFn(c1: Option, c2: Option) : boolean {
     return (c1 && c2 ? c1.value === c2.value : c1 === c2);
   }
 
-  onSubmit() {
+  onSubmit() : void {
     this.printFormValues();
 
-    // let jobTime = this.getJobTimeFromFormValues();
+    if (!this.jobName) {
+      // TODO this is probably not the best way to handle this
+      this.errorMessage = 'Job Name must be entered';
+      this.errorDismissed = false;
+    }
+    else {
 
-    // console.log(jobTime);
+      let jobTime = this.getJobTimeFromFormValues();
 
-    // this.timeEntryService.addJobTime(jobTime).subscribe(
-    //   result => {
-    //     console.log(result);
-    //   },
-    //   error => {
-    //     console.log(error.message);
-    //   },
-    //   () => { console.log('onSubmit() request finished')}
-    // );
+      console.log(jobTime);
+
+      this.timeEntryService.addJobTime(jobTime).subscribe(
+        result => {
+          console.log(result);
+        },
+        error => {
+          console.log(error.message);
+        },
+        () => { console.log('onSubmit() request finished')}
+      );
+    }
+  }
+
+  private initializeForm() : void {
+
+    this.timeInHour = '07';
+    this.timeInMinute = '30';
+    this.timeInPeriod = 'AM';
+    this.timeOutHour = StringUtil.getTwoLengthStringFromNumber(
+                              DateUtil.get2Length12HourHoursFrom24HourHours(this.currentTime.getHours()));
+    this.timeOutMinute = StringUtil.getTwoLengthStringFromNumber(this.currentTime.getMinutes());
+    this.timeOutPeriod = DateUtil.getPeriodStringFrom24HourHours(this.currentTime.getHours());
+
+    this.month = StringUtil.getTwoLengthStringFromNumber(this.currentTime.getMonth() + 1);
+    this.day = StringUtil.getTwoLengthStringFromNumber(this.currentTime.getDate());
+    this.year = String(this.currentTime.getFullYear());
+
+    this.hourOptions = StringUtil.getTwoLengthNumberStringOptions(1, 12, 1);
+    this.minuteOptions = StringUtil.getTwoLengthNumberStringOptions(0, 59, 5);
+    this.periodOptions = TimeEntryComponent.periodOptions;
+    this.monthOptions = StringUtil.getTwoLengthNumberStringOptions(1, 12, 1);
+    this.dayOptions =
+        StringUtil.getTwoLengthNumberStringOptions(
+                        1, DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)), 1);
+    this.yearOptions = StringUtil.getNumberStringOptions(2010, 2020, 1);
+  }
+
+  private onErrorDismiss(errorDismissed: boolean) : void {
+    this.errorDismissed = true;
+  }
+
+  private resolveNumberOfDaysInMonth() {
+    this.dayOptions =
+        StringUtil.getTwoLengthNumberStringOptions(
+            1, DateUtil.getNumberOfDaysInMonth(Number(this.month), Number(this.year)), 1);
   }
 
   private getJobTimeFromFormValues() : JobTime {
